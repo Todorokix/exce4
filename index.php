@@ -1,9 +1,25 @@
 <?php
 error_reporting(0);
 echo " HAPPY LOOTING!! \n";
+function clearCookieFile() {
+    $file = 'cookie.txt';
+    if (file_exists($file)) {
+        // Open the file in write mode to truncate it
+        $handle = fopen($file, 'w');
+        if ($handle) {
+            fclose($handle); // Close the file after truncating it
+        } else {
+            echo "Failed to open the cookie file. \n";
+        }
+    } else {
+        echo "Cookie file does not exist.\n";
+    }
+}
 
-$ar= array("63982");
+// Example usage
 
+
+$ar= array("63936","63937","63963","63968");
 
 
 $n=4;
@@ -24,6 +40,7 @@ function getName($n) {
 $mnk = getName($n);
 $rd = rand(0,999);
 $vvv = "Mozilla/5.0 (Linux; Android 2.3.6) AppleWebKit/533.1 (KHTML, like Gecko) edge X/".$mnk."";
+
 function generateRandomIP() {
     // Generate random values for each octet
     $octet1 = rand(1, 255);
@@ -37,9 +54,6 @@ function generateRandomIP() {
     return $randomIP;
 }
 $ipp = generateRandomIP();
-
-
-
 
 function ofer($url, $method, $data = null) {
 	global $ipp, $vvv;
@@ -75,8 +89,8 @@ function batt($url, $method, $data = null) {
         "upgrade-insecure-requests: 1",
         "content-type: application/x-www-form-urlencoded",
         "X-Requested-With: XMLHttpRequest",
-        "X-Forwarded-For: ".$ipp."",
-        "user-agent: ".$vvv.""
+        "X-Forwarded-For: $ipp",
+        "user-agent: $vvv"
     );
     //$proxy = 'http://jmdzpqpq:imrbe2ogb5md@2.56.119.93:5074';
     $ch = curl_init();
@@ -104,7 +118,7 @@ function solveCaptcha(){
 a:
 $sit = "6LdQN2wkAAAAAJcsc6u8xgog6ObX0icCRAowGiW8";
 $login = "http://sctg.xyz/in.php?key=Gjd5MbFADqP0DlrurYrAmdIlQ9owqctV|onlyxevil&method=userrecaptcha&googlekey=".$sit."&json=1&pageurl=https://coins-battle.com/game/claimreward";
-$ua[] = "User-Agent: ".$vvv."";
+$ua[] = "User-Agent: $vvv";
 $ua[] = "Content-Type: application/json";
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $login);
@@ -141,6 +155,7 @@ $captcha = str_replace("OK|", "", $hy);
 curl_close($ch);
 return $captcha;
 }
+
 function token(){
 	global $use;
 mk:
@@ -155,16 +170,18 @@ if($tokk==""){goto mk;}
 return $tokk;
 }
 
+
 $bb = 0;
 
 xx:
-unlink('cookie.txt');
+clearCookieFile();
 
 //$ar= array("4b4b6bf41acc","2957ded8262f","e5cfd39424ff","27b2485eed06","c98283105579");
 
 $use = $ar[$bb];
 echo "userid = ".$use." \n";
 if($use == ""){echo "Complete!!! \n";unlink('cookie.txt');sleep(99999);}
+
 
 $rot = token();
 
@@ -178,6 +195,7 @@ zz:
 while(true):
 $url = "https://coins-battle.com/game/play/".$ui."";
 $btc = batt($url, 'GET');
+
 $con = explode(' </b>&nbsp;',explode('<b class="gradient-text">Website: ', $btc)[1])[0];
 if($con == ""){$bb=$bb;goto xx;}
 if(isset($con)) {
