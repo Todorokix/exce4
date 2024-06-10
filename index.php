@@ -21,7 +21,7 @@ function recpt(){
 	global $vvv;
 a:
 $sit = "6Lcd0SYpAAAAAPZk7LMsCwVld1y8gAGhjbbHM5x1";
-$login = "http://sctg.xyz/in.php?key=Gjd5MbFADqP0DlrurYrAmdIlQ9owqctV&method=userrecaptcha&googlekey=".$sit."&json=1&pageurl=https://acryptominer.io/user/login";
+$login = "http://sctg.xyz/in.php?key=6Xb2iI4CenClVzEWLP0ScKbTJX0jJWDp&method=userrecaptcha&googlekey=".$sit."&json=1&pageurl=https://acryptominer.io/user/login";
 $ua[] = "User-Agent: ".$vvv."";
 $ua[] = "Content-Type: application/json";
 $ch = curl_init();
@@ -36,7 +36,7 @@ $re = json_decode($result);
 $id = $re->request;
 if($id==''){goto a;}
 c:
-$url = "https://xzz3-60aa567db750.herokuapp.com/?key=Gjd5MbFADqP0DlrurYrAmdIlQ9owqctV&id=".$id."";
+$url = "https://xzzzapii-842057509f19.herokuapp.com/?key=6Xb2iI4CenClVzEWLP0ScKbTJX0jJWDp&id=".$id."";
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
@@ -63,7 +63,7 @@ function solveCaptcha(){
 	global $vvv;
 a:
 $sit = "0x4AAAAAAAZWGl4XNAQLb9Uf";
-$login = "http://api.sctg.xyz/in.php?key=Gjd5MbFADqP0DlrurYrAmdIlQ9owqctV&method=turnstile&sitekey=".$sit."&json=1&pageurl=https://acryptominer.io/user/faucet";
+$login = "http://api.sctg.xyz/in.php?key=6Xb2iI4CenClVzEWLP0ScKbTJX0jJWDp&method=turnstile&sitekey=".$sit."&json=1&pageurl=https://acryptominer.io/user/faucet";
 $ua[] = "User-Agent: ".$vvv."";
 $ua[] = "Content-Type: application/json";
 $ch = curl_init();
@@ -78,7 +78,7 @@ $re = json_decode($result);
 $id = $re->request;
 if($id==''){goto a;}
 c:
-$url = "https://xzz3-60aa567db750.herokuapp.com/?key=Gjd5MbFADqP0DlrurYrAmdIlQ9owqctV&id=".$id."";
+$url = "https://xzzzapii-842057509f19.herokuapp.com/?key=6Xb2iI4CenClVzEWLP0ScKbTJX0jJWDp&id=".$id."";
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
@@ -146,15 +146,15 @@ $tok = explode('">',explode('<input type="hidden" name="_token" value="', $str)[
 $capt = recpt();
 
 $url = "https://acryptominer.io/user/login";
-$data = "_token=".$tok."&username=mtafah61&password=Nung1234&g-recaptcha-response=".$capt."&remember=on";
+$data = "_token=".$tok."&username=kamyessr&password=Nung1234&g-recaptcha-response=".$capt."&remember=on";
 $response = http_request($url, 'POST', $data, $headers);
 
 
 while(true):
 $url = "https://acryptominer.io/user/faucet";
 $str = http_request($url, 'GET', null, $headers);
-$tim = explode(';',explode('var timeUntilNextClaim = ', $str)[1])[0];
-$mod = str_replace('var timeUntilNextClaim = '.$tim.';', 'var timeUntilNextClaim = 0;', $str);
+//$tim = explode(';',explode('var timeUntilNextClaim = ', $str)[1])[0];
+//$mod = str_replace('var timeUntilNextClaim = '.$tim.';', 'var timeUntilNextClaim = 0;', $str);
 //echo " $mod \n";
 $lef = explode('">',explode('<input type="hidden" name="_token" value="', $str)[1])[0];
 if($lef == ""){echo "csf hilang \n";sleep(99999);}
