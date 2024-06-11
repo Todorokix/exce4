@@ -60,10 +60,9 @@ curl_close($ch);
 return $captcha;
 }
 function solveCaptcha(){
-	global $vvv;
+	global $site, $vvv;
 a:
-$sit = "0x4AAAAAAAZWGl4XNAQLb9Uf";
-$login = "http://api.sctg.xyz/in.php?key=6Xb2iI4CenClVzEWLP0ScKbTJX0jJWDp&method=turnstile&sitekey=".$sit."&json=1&pageurl=https://acryptominer.io/user/faucet";
+$login = "http://api.sctg.xyz/in.php?key=6Xb2iI4CenClVzEWLP0ScKbTJX0jJWDp&method=turnstile&sitekey=".$site."&json=1&pageurl=https://acryptominer.io/user/faucet";
 $ua[] = "User-Agent: ".$vvv."";
 $ua[] = "Content-Type: application/json";
 $ch = curl_init();
@@ -153,11 +152,11 @@ $response = http_request($url, 'POST', $data, $headers);
 while(true):
 $url = "https://acryptominer.io/user/faucet";
 $str = http_request($url, 'GET', null, $headers);
-//$tim = explode(';',explode('var timeUntilNextClaim = ', $str)[1])[0];
+$site = explode('" style="text-align: center;margin-top: 10px;">',explode('<div class="cf-turnstile" data-sitekey="', $str)[1])[0];
 //$mod = str_replace('var timeUntilNextClaim = '.$tim.';', 'var timeUntilNextClaim = 0;', $str);
 //echo " $mod \n";
 $lef = explode('">',explode('<input type="hidden" name="_token" value="', $str)[1])[0];
-if($lef == ""){echo "csf hilang \n";sleep(99999);}
+if($site == ""){echo "csf hilang \n";sleep(99999);}
 $cap = solveCaptcha();
 $url = 'https://acryptominer.io/user/faucet';
 $data = "_token=".$lef."&cf-turnstile-response=".$cap."";
