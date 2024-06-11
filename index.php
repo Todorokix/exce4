@@ -129,11 +129,24 @@ function http_request($url, $method = 'GET', $data = null, $headers = []) {
     return $response;
 }
 
+function generateRandomIP() {
+    $octet1 = rand(1, 255);
+    $octet2 = rand(0, 255);
+    $octet3 = rand(0, 255);
+    $octet4 = rand(1, 255);
+    $randomIP = "$octet1.$octet2.$octet3.$octet4";
+    return $randomIP;
+}
+$ipx = generateRandomIP();
+$ipxx = generateRandomIP();
+
+
 $headers = [
        "Host: acryptominer.io",
         "origin: https://acryptominer.io",
         "content-type: application/x-www-form-urlencoded",
         "Connection: keep-alive",
+        
         "user-agent: $vvv"
 ];
 
@@ -152,11 +165,12 @@ $response = http_request($url, 'POST', $data, $headers);
 while(true):
 $url = "https://acryptominer.io/user/faucet";
 $str = http_request($url, 'GET', null, $headers);
-$site = explode('" style="text-align: center;margin-top: 10px;">',explode('<div class="cf-turnstile" data-sitekey="', $str)[1])[0];
+$site = explode('"',explode('<div class="cf-turnstile" data-sitekey="', $str)[1])[0];
+if($site=="0x4AAAAAAAZWGl4XNAQLb9Uf"){}else{echo "csf hilang \n";sleep(99999);}
+
 //$mod = str_replace('var timeUntilNextClaim = '.$tim.';', 'var timeUntilNextClaim = 0;', $str);
-//echo " $mod \n";
+//echo " $site \n";exit;
 $lef = explode('">',explode('<input type="hidden" name="_token" value="', $str)[1])[0];
-if($site == ""){echo "csf hilang \n";sleep(99999);}
 $cap = solveCaptcha();
 $url = 'https://acryptominer.io/user/faucet';
 $data = "_token=".$lef."&cf-turnstile-response=".$cap."";
