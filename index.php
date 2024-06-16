@@ -33,7 +33,7 @@ $re = json_decode($result);
 $id = $re->request;
 if($id==''){goto a;}
 c:
-$url = "https://xzzzapii-842057509f19.herokuapp.com/?key=6Xb2iI4CenClVzEWLP0ScKbTJX0jJWDp&id=".$id."";
+$url = "https://temera88.000webhostapp.com/?key=6Xb2iI4CenClVzEWLP0ScKbTJX0jJWDp&id=".$id."";
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
@@ -74,7 +74,7 @@ $re = json_decode($result);
 $id = $re->request;
 if($id==''){goto a;}
 c:
-$url = "https://xzzzapii-842057509f19.herokuapp.com/?key=6Xb2iI4CenClVzEWLP0ScKbTJX0jJWDp&id=".$id."";
+$url = "https://temera88.000webhostapp.com/?key=6Xb2iI4CenClVzEWLP0ScKbTJX0jJWDp&id=".$id."";
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
@@ -136,7 +136,7 @@ function generateRandomIP() {
 }
 
 
-a:
+zz:
 unlink('cookie.txt');
 $mnk = getName($n);
 $rd = rand(0,999);
@@ -165,14 +165,14 @@ $response = http_request($url, 'POST', $data, $headers);
 $url = "https://acryptominer.io/user/dashboard";
 $das = http_request($url, 'GET', null, $headers);
 $bal = explode('POINT</h4>',explode('<h4 class="dashboard-widget__title">', $das)[1])[0];
-if($bal == ""){echo " Balance Hilang \n";goto a;sleep(60);}
+if($bal == ""){echo " Balance Hilang \n";sleep(60);goto zz;}
 echo " Balance: ".$bal." \n";
 while(true):
 
 $url = "https://acryptominer.io/user/faucet";
 $str = http_request($url, 'GET', null, $headers);
 $site = explode('"',explode('<div class="cf-turnstile" data-sitekey="', $str)[1])[0];
-if($site=="0x4AAAAAAAZWGl4XNAQLb9Uf"){}else{echo "csf hilang \n";sleep(60);goto a;}
+if($site=="0x4AAAAAAAZWGl4XNAQLb9Uf"){}else{echo "csf hilang \n";sleep(60);goto zz;}
 
 $lef = explode('">',explode('<input type="hidden" name="_token" value="', $str)[1])[0];
 sleep(5);
@@ -185,7 +185,7 @@ $res = explode('",',explode('message: "', $response)[1])[0];
 date_default_timezone_set('Asia/Jakarta');
 $timestamp = time();
 $wak = date("[H:i]", $timestamp);
-if (strpos($res, "successfully") !== false) {echo" ".$wak." ".$res." \n";sleep(301);}else{goto a;}
+if (strpos($res, "successfully") !== false) {echo" ".$wak." ".$res." \n";sleep(301);}else{goto zz;}
 
 endwhile;
 ?>
