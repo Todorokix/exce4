@@ -134,7 +134,15 @@ function generateRandomIP() {
     $randomIP = "$octet1.$octet2.$octet3.$octet4";
     return $randomIP;
 }
+
+
+a:
+unlink('cookie.txt');
+$mnk = getName($n);
+$rd = rand(0,999);
+$vvv = "Mozilla/5.0 (Linux; Android 13; SM-A515U) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Mobile Safari/537.36 X/".$mnk."";
 $ipx = generateRandomIP();
+
 $headers = [
        "Host: acryptominer.io",
         "origin: https://acryptominer.io",
@@ -144,11 +152,6 @@ $headers = [
         "user-agent: $vvv"
 ];
 
-a:
-unlink('cookie.txt');
-$mnk = getName($n);
-$rd = rand(0,999);
-$vvv = "Mozilla/5.0 (Linux; Android 13; SM-A515U) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Mobile Safari/537.36 X/".$mnk."";
 
 $url = "https://acryptominer.io/user/login";
 $str = http_request($url, 'GET', null, $headers);
