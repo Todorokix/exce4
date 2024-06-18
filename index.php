@@ -175,11 +175,11 @@ while(true):
 $url = "https://acryptominer.io/user/faucet";
 $str = http_request($url, 'GET', null, $headers);
 $site = explode('"',explode('<div class="cf-turnstile" data-sitekey="', $str)[1])[0];
-if($site=="0x4AAAAAAAZWGl4XNAQLb9Uf"){}else{echo "csf hilang \n";sleep(60);goto zz;}
+if($site=="0x4AAAAAAAZWGl4XNAQLb9Uf"){$cap = solveCaptcha();}else{echo "csf hilang \n";sleep(60);goto zz;}
 
 $lef = explode('">',explode('<input type="hidden" name="_token" value="', $str)[1])[0];
 
-$cap = solveCaptcha();
+ok:
 $url = 'https://acryptominer.io/user/faucet';
 $data = "_token=".$lef."&cf-turnstile-response=".$cap."";
 $response = http_request($url, 'POST', $data, $headers);
@@ -188,7 +188,7 @@ $res = explode('",',explode('message: "', $response)[1])[0];
 date_default_timezone_set('Asia/Jakarta');
 $timestamp = time();
 $wak = date("[H:i]", $timestamp);
-if (strpos($res, "successfully") !== false) {echo" ".$wak." ".$res." \n";sleep(301);}else{echo " Claim Gagal! \n";}
+if (strpos($res, "successfully") !== false) {echo" ".$wak." ".$res." \n";sleep(307);}else{echo " Claim Gagal! \n";sleep(7);goto ok;}
 
 endwhile;
 ?>
