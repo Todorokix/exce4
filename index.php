@@ -179,7 +179,7 @@ if($site=="0x4AAAAAAAZWGl4XNAQLb9Uf"){$cap = solveCaptcha();}else{echo "csf hila
 
 $lef = explode('">',explode('<input type="hidden" name="_token" value="', $str)[1])[0];
 sleep(5);
-ok:
+
 $url = 'https://acryptominer.io/user/faucet';
 $data = "_token=".$lef."&cf-turnstile-response=".$cap."";
 $response = http_request($url, 'POST', $data, $headers);
@@ -188,7 +188,7 @@ $res = explode('",',explode('message: "', $response)[1])[0];
 date_default_timezone_set('Asia/Jakarta');
 $timestamp = time();
 $wak = date("[H:i]", $timestamp);
-if (strpos($res, "successfully") !== false) {echo" ".$wak." ".$res." \n";sleep(307);}else{echo " Claim Gagal! \n";sleep(7);goto ok;}
+if (strpos($res, "successfully") !== false) {echo" ".$wak." ".$res." \n";sleep(307);}else{echo " Claim Gagal! \n";sleep(7);}
 
 endwhile;
 ?>
