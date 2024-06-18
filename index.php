@@ -188,7 +188,7 @@ $res = explode('",',explode('message: "', $response)[1])[0];
 date_default_timezone_set('Asia/Jakarta');
 $timestamp = time();
 $wak = date("[H:i]", $timestamp);
-if (strpos($res, "successfully") !== false) {echo" ".$wak." ".$res." \n";sleep(301);}
+if (strpos($res, "successfully") !== false) {echo" ".$wak." ".$res." \n";sleep(301);}else{echo " Claim Gagal! \n";}
 
 endwhile;
 ?>
