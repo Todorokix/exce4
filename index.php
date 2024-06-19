@@ -8,7 +8,7 @@ function recpt(){
 	global $vvv;
 a:
 $sit = "6Lcd0SYpAAAAAPZk7LMsCwVld1y8gAGhjbbHM5x1";
-$login = "http://sctg.xyz/in.php?key=6Xb2iI4CenClVzEWLP0ScKbTJX0jJWDp&method=userrecaptcha&googlekey=".$sit."&json=1&pageurl=https://acryptominer.io/user/login";
+$login = "http://api.sctg.xyz/in.php?key=6Xb2iI4CenClVzEWLP0ScKbTJX0jJWDp&method=userrecaptcha&googlekey=".$sit."&json=1&pageurl=https://acryptominer.io/user/login";
 $ua[] = "User-Agent: ".$vvv."";
 $ua[] = "Content-Type: application/json";
 $ch = curl_init();
@@ -24,7 +24,7 @@ $re = json_decode($result);
 $id = $re->request;
 if($id==''){goto a;}
 c:
-$url = "https://temera88.000webhostapp.com/?key=6Xb2iI4CenClVzEWLP0ScKbTJX0jJWDp&id=".$id."";
+$url = "http://api.sctg.xyz/res.php?key=6Xb2iI4CenClVzEWLP0ScKbTJX0jJWDp&action=get&id=".$id."";
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
@@ -34,17 +34,13 @@ curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
 $res = curl_exec($ch);
-
-$rf = json_decode($res);
-$hy = $rf->response;
-
-if ($hy == 'CAPCHA_NOT_READY') {          
+if ($res == 'CAPCHA_NOT_READY') {          
         sleep(6);
         goto c;
     }
-if($hy=="ERROR_CAPTCHA_UNSOLVABLE"){sleep(80);goto a;}
+if($res=="ERROR_CAPTCHA_UNSOLVABLE"){sleep(80);goto a;}
 
-$captcha = str_replace("OK|", "", $hy);
+$captcha = str_replace("OK|", "", $res);
 curl_close($ch);
 return $captcha;
 }
@@ -67,7 +63,7 @@ $re = json_decode($result);
 $id = $re->request;
 if($id==''){goto ay;}
 cy:
-$url = "https://temera88.000webhostapp.com/?key=6Xb2iI4CenClVzEWLP0ScKbTJX0jJWDp&id=".$id."";
+$url = "http://api.sctg.xyz/res.php?key=6Xb2iI4CenClVzEWLP0ScKbTJX0jJWDp&action=get&id=".$id."";
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
@@ -78,16 +74,13 @@ curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
 $res = curl_exec($ch);
 
-$rf = json_decode($res);
-$hy = $rf->response;
-
-if ($hy == 'CAPCHA_NOT_READY') {          
+if ($res == 'CAPCHA_NOT_READY') {          
         sleep(6);
         goto cy;
     }
-if($hy=="ERROR_CAPTCHA_UNSOLVABLE"){sleep(80);goto ay;}
+if($res=="ERROR_CAPTCHA_UNSOLVABLE"){sleep(80);goto ay;}
 
-$captcha = str_replace("OK|", "", $hy);
+$captcha = str_replace("OK|", "", $res);
 curl_close($ch);
 return $captcha;
 }
@@ -180,7 +173,7 @@ $res = explode('",',explode('message: "', $response)[1])[0];
 date_default_timezone_set('Asia/Jakarta');
 $timestamp = time();
 $wak = date("[H:i]", $timestamp);
-if (strpos($res, "successfully") !== false) {echo" ".$wak." ".$res." \n";sleep(307);}else{echo " Claim Gagal! \n";sleep(7);}
+if (strpos($res, "successfully") !== false) {echo" ".$wak." ".$res." \n";sleep(307);}else{echo " Claim Gagal! ".$res." \n";}
 
 endwhile;
 ?>
