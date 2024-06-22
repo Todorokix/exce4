@@ -174,14 +174,16 @@ $bal = explode('POINT</h4>',explode('<h4 class="dashboard-widget__title">', $das
 if($bal == ""){echo " Balance Hilang \n";sleep(60);goto zz;}
 echo " Balance: ".$bal." \n";
 while(true):
-
+$site = "0x4AAAAAAAZWGl4XNAQLb9Uf";
+$cok = solve();
+$cap = solveCaptcha();
 $url = "https://acryptominer.io/user/faucet";
 $str = http_request($url, 'GET', null, $headers);
-$site = explode('"',explode('<div class="cf-turnstile" data-sitekey="', $str)[1])[0];
-if($site=="0x4AAAAAAAZWGl4XNAQLb9Uf"){$cok = solve();$cap = solveCaptcha();}else{echo "csf hilang \n";sleep(60);goto zz;}
+$sitte = explode('"',explode('<div class="cf-turnstile" data-sitekey="', $str)[1])[0];
+if($sitte=="0x4AAAAAAAZWGl4XNAQLb9Uf"){}else{echo "csf hilang \n";sleep(60);goto zz;}
 
 $lef = explode('">',explode('<input type="hidden" name="_token" value="', $str)[1])[0];
-sleep(5);
+
 
 $url = 'https://acryptominer.io/user/faucet';
 $data = "_token=".$lef."&cf-turnstile-response=".$cap."&g-recaptcha-response=".$cok."";
@@ -191,7 +193,7 @@ $res = explode('",',explode('message: "', $response)[1])[0];
 date_default_timezone_set('Asia/Jakarta');
 $timestamp = time();
 $wak = date("[H:i]", $timestamp);
-if (strpos($res, "successfully") !== false) {echo" ".$wak." ".$res." \n";sleep(301);}else{echo " Claim Gagal! ".$res." \n";goto zz;}
+if (strpos($res, "successfully") !== false) {echo" ".$wak." ".$res." \n";sleep(301);}else{echo " Claim Gagal! ".$res." \n";sleep(60);goto zz;}
 
 endwhile;
 ?>
