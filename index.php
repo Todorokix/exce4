@@ -23,7 +23,7 @@ function http_get($url){
   $header = array(
      "User-Agent: $vvv"
 );
-  $proxy = 'socks5://qhunsbzn:if51h5om5czo@38.154.227.167:5868';
+  $proxy = 'http://qhunsbzn:if51h5om5czo@38.154.227.167:5868';
   $ch = curl_init();
   curl_setopt($ch, CURLOPT_URL, $url);
   curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
@@ -33,7 +33,7 @@ function http_get($url){
   curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
   curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL, true);
   curl_setopt($ch, CURLOPT_PROXY, $proxy);       
-  curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
+  curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_HTTP);
   return curl_exec($ch);
 }
 function recpt(){
@@ -178,7 +178,7 @@ while(true):
 $url = "https://acryptominer.io/user/faucet";
 $str = http_request($url, 'GET', null, $headers);
 $site = explode('"',explode('<div class="cf-turnstile" data-sitekey="', $str)[1])[0];
-if($site=="0x4AAAAAAAZWGl4XNAQLb9Uf"){$cap = solveCaptcha();$cok = solve();}else{echo "csf hilang \n";sleep(60);goto zz;}
+if($site=="0x4AAAAAAAZWGl4XNAQLb9Uf"){$cok = solve();$cap = solveCaptcha();}else{echo "csf hilang \n";sleep(60);goto zz;}
 
 $lef = explode('">',explode('<input type="hidden" name="_token" value="', $str)[1])[0];
 sleep(5);
