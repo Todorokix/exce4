@@ -76,7 +76,7 @@ if ($idz == 'CAPCHA_NOT_READY') {
         sleep(6);
         goto ccs;
     }
-if($idz=="ERROR_CAPTCHA_UNSOLVABLE"){sleep(10);goto ass;}
+if($idz=="ERROR_CAPTCHA_UNSOLVABLE"){sleep(10);goto aas;}
 
 //if ($st == '1') {$captcha = $idz;}
 $captcha = $rez->request;
