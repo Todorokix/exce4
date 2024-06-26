@@ -21,9 +21,10 @@ function http_get($url){
 	global $vvv;
 
   $header = array(
+     "X-Forwarded-For: 2.120.15.80",
      "User-Agent: $vvv"
 );
-  $proxy = 'http://qhunsbzn:if51h5om5czo@38.154.227.167:5868';
+  
   $ch = curl_init();
   curl_setopt($ch, CURLOPT_URL, $url);
   curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
@@ -31,9 +32,7 @@ function http_get($url){
   curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
   curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
   curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-  curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL, true);
-  curl_setopt($ch, CURLOPT_PROXY, $proxy);       
-  curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_HTTP);
+  
   return curl_exec($ch);
 }
 function recpt(){
@@ -67,17 +66,20 @@ $re = json_decode($result);
 $id = $re->request;
 if($id==''){goto aas;}
 ccs:
-$url = "http://api.sctg.xyz/res.php?key=LtPy3TlWHBZFzxJTJDdr3SNC1T4a9H6B&action=get&id=".$id."";
+$url = "http://api.sctg.xyz/res.php?key=LtPy3TlWHBZFzxJTJDdr3SNC1T4a9H6B&action=get&json=1&id=".$id."";
 $res = http_get($url);
+$rez = json_decode($res);
+$idz = $rez->request;
+$st = $rez->status;
 
-if ($res == 'CAPCHA_NOT_READY') {          
+if ($idz == 'CAPCHA_NOT_READY') {          
         sleep(6);
         goto ccs;
     }
-if($res=="ERROR_CAPTCHA_UNSOLVABLE"){sleep(80);goto aas;}
+if($idz=="ERROR_CAPTCHA_UNSOLVABLE"){sleep(10);goto ass;}
 
-$captcha = str_replace("OK|", "", $res);
-
+//if ($st == '1') {$captcha = $idz;}
+$captcha = $rez->request;
 return $captcha;
 }
 
@@ -145,6 +147,16 @@ function getName($n) {
 
 zz:
 unlink('cookie.txt');
+function generateRandomIP() {
+    $octet1 = rand(1, 255);
+    $octet2 = rand(0, 255);
+    $octet3 = rand(0, 255);
+    $octet4 = rand(1, 255);
+    $randomIP = "$octet1.$octet2.$octet3.$octet4";
+    return $randomIP;
+}
+$ipp = generateRandomIP();
+
 $mnk = getName($n);
 $rd = rand(0,999);
 $vvv = "Mozilla/5.0 (Linux; Android) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Mobile Safari/537.36 X/".$mnk."";
@@ -152,6 +164,7 @@ $vvv = "Mozilla/5.0 (Linux; Android) AppleWebKit/537.36 (KHTML, like Gecko) Chro
 
 $headers = [
        "Host: acryptominer.io",
+       "X-Forwarded-For: ".$ipp."",
         "content-type: application/x-www-form-urlencoded",
         "Connection: keep-alive",      
         "origin: https://acryptominer.io",
