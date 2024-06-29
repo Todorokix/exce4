@@ -21,6 +21,7 @@ function http_get($url){
 	global $vvv;
 
   $header = array(
+     "Host: 80.64.218.109",
      "X-Forwarded-For: 2.120.15.80",
      "User-Agent: $vvv"
 );
@@ -45,7 +46,7 @@ $re = json_decode($result);
 $id = $re->request;
 if($id==''){goto bb;}
 cs:
-$url = "http://api.sctg.xyz/res.php?key=LtPy3TlWHBZFzxJTJDdr3SNC1T4a9H6B&action=get&id=".$id."";
+$url = "http://80.64.218.109/res.php?key=LtPy3TlWHBZFzxJTJDdr3SNC1T4a9H6B&action=get&id=".$id."";
 $res = http_get($url);
 if ($res == 'CAPCHA_NOT_READY') {          
         sleep(6);
@@ -66,7 +67,7 @@ $re = json_decode($result);
 $id = $re->request;
 if($id==''){goto aas;}
 ccs:
-$url = "http://api.sctg.xyz/res.php?key=LtPy3TlWHBZFzxJTJDdr3SNC1T4a9H6B&action=get&json=1&id=".$id."";
+$url = "http://80.64.218.109/res.php?key=LtPy3TlWHBZFzxJTJDdr3SNC1T4a9H6B&action=get&json=1&id=".$id."";
 $res = http_get($url);
 $rez = json_decode($res);
 $idz = $rez->request;
@@ -92,7 +93,7 @@ $re = json_decode($result);
 $id = $re->request;
 if($id==''){goto ay;}
 cy:
-$url = "http://api.sctg.xyz/res.php?key=LtPy3TlWHBZFzxJTJDdr3SNC1T4a9H6B&action=get&id=".$id."";
+$url = "http://80.64.218.109/res.php?key=LtPy3TlWHBZFzxJTJDdr3SNC1T4a9H6B&action=get&id=".$id."";
 $res = http_get($url);
 if ($res == 'CAPCHA_NOT_READY') {          
         sleep(6);
@@ -170,7 +171,22 @@ $headers = [
         "origin: https://acryptominer.io",
         "user-agent: $vvv"
 ];
+function run(){
+	global $headers;
+$url = "https://acryptominer.io/user/faucet";
+$xxx = http_request($url, 'GET', null, $headers);
 
+return $xxx;
+}
+
+function dorr(){
+	global $lef,$cap,$cok,$headers;
+$url = 'https://acryptominer.io/user/faucet';
+$data = "_token=".$lef."&cf-turnstile-response=".$cap."&g-recaptcha-response=".$cok."";
+$response = http_request($url, 'POST', $data, $headers);
+
+return $response;
+}
 
 $url = "https://acryptominer.io/user/login";
 $str = http_request($url, 'GET', null, $headers);
@@ -186,23 +202,18 @@ $das = http_request($url, 'GET', null, $headers);
 $bal = explode('POINT</h4>',explode('<h4 class="dashboard-widget__title">', $das)[1])[0];
 if($bal == ""){echo " Balance Hilang \n";sleep(60);goto zz;}
 echo " Balance: ".$bal." \n";
+
 while(true):
 $site = "0x4AAAAAAAZWGl4XNAQLb9Uf";
 $cok = solve();
 $cap = solveCaptcha();
-$url = "https://acryptominer.io/user/faucet";
-$str = http_request($url, 'GET', null, $headers);
-$sitte = explode('"',explode('<div class="cf-turnstile" data-sitekey="', $str)[1])[0];
+$gg = run();
+$sitte = explode('"',explode('<div class="cf-turnstile" data-sitekey="', $gg)[1])[0];
 if($sitte=="0x4AAAAAAAZWGl4XNAQLb9Uf"){}else{echo "csf hilang \n";sleep(60);goto zz;}
+$lef = explode('">',explode('<input type="hidden" name="_token" value="', $gg)[1])[0];
 
-$lef = explode('">',explode('<input type="hidden" name="_token" value="', $str)[1])[0];
-
-
-$url = 'https://acryptominer.io/user/faucet';
-$data = "_token=".$lef."&cf-turnstile-response=".$cap."&g-recaptcha-response=".$cok."";
-$response = http_request($url, 'POST', $data, $headers);
-$res = explode('",',explode('message: "', $response)[1])[0];
-
+$pot = dorr();
+$res = explode('",',explode('message: "', $pot)[1])[0];
 date_default_timezone_set('Asia/Jakarta');
 $timestamp = time();
 $wak = date("[H:i]", $timestamp);
