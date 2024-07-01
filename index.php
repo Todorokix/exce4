@@ -18,12 +18,14 @@ function get($url){
   return curl_exec($ch);
 }
 function http_get($url){
-	global $vvv;
+	
+   $rd = rand(0,999);
+$ddv = "Mozilla/5.0 (Linux; Android) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Mobile Safari/537.36 X/".$rd."";
 
   $header = array(
-     "Host: 80.64.218.109",
-     "X-Forwarded-For: 2.120.15.80",
-     "User-Agent: $vvv"
+     "Host: temera88.000webhostapp.com",
+     "content-type: application/x-www-form-urlencoded",
+     "User-Agent: $ddv"
 );
   
   $ch = curl_init();
@@ -33,7 +35,7 @@ function http_get($url){
   curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
   curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
   curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-  
+  curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
   return curl_exec($ch);
 }
 function recpt(){
@@ -46,41 +48,39 @@ $re = json_decode($result);
 $id = $re->request;
 if($id==''){goto bb;}
 cs:
-$url = "http://80.64.218.109/res.php?key=LtPy3TlWHBZFzxJTJDdr3SNC1T4a9H6B&action=get&id=".$id."";
+$url = "https://temera88.000webhostapp.com/?id=".$id."&key=LtPy3TlWHBZFzxJTJDdr3SNC1T4a9H6B";
 $res = http_get($url);
 if ($res == 'CAPCHA_NOT_READY') {          
         sleep(6);
         goto cs;
     }
-if($res=="ERROR_CAPTCHA_UNSOLVABLE"){sleep(80);goto bb;}
+if($res=="ERROR_CAPTCHA_UNSOLVABLE"){sleep(8);goto bb;}
 
-$captcha = str_replace("OK|", "", $res);
-
+$cha = explode('|', $res);
+$captcha = $cha[1];
+if($captcha == ""){goto cs;}
 return $captcha;
 }
 function solve(){
 aas:
 $sit = "6Lcd0SYpAAAAAPZk7LMsCwVld1y8gAGhjbbHM5x1";
-$login = "http://api.sctg.xyz/in.php?key=LtPy3TlWHBZFzxJTJDdr3SNC1T4a9H6B&method=userrecaptcha&googlekey=".$sit."&json=1&pageurl=https://acryptominer.io/user/faucet";
+$login = "http://api.sctg.xyz/in.php?key=LtPy3TlWHBZFzxJTJDdr3SNC1T4a9H6B&method=userrecaptcha&googlekey=".$sit."&json=1&pageurl=https://acryptominer.io/user/login";
 $result = get($login);
 $re = json_decode($result);
 $id = $re->request;
 if($id==''){goto aas;}
 ccs:
-$url = "http://80.64.218.109/res.php?key=LtPy3TlWHBZFzxJTJDdr3SNC1T4a9H6B&action=get&json=1&id=".$id."";
+$url = "https://temera88.000webhostapp.com/?id=".$id."&key=LtPy3TlWHBZFzxJTJDdr3SNC1T4a9H6B";
 $res = http_get($url);
-$rez = json_decode($res);
-$idz = $rez->request;
-$st = $rez->status;
-
-if ($idz == 'CAPCHA_NOT_READY') {          
+if ($res == 'CAPCHA_NOT_READY') {          
         sleep(6);
         goto ccs;
     }
-if($idz=="ERROR_CAPTCHA_UNSOLVABLE"){sleep(10);goto aas;}
+if($res=="ERROR_CAPTCHA_UNSOLVABLE"){sleep(8);goto aas;}
 
-//if ($st == '1') {$captcha = $idz;}
-$captcha = $rez->request;
+$cha = explode('|', $res);
+$captcha = $cha[1];
+if($captcha == ""){goto ccs;}
 return $captcha;
 }
 
@@ -93,15 +93,16 @@ $re = json_decode($result);
 $id = $re->request;
 if($id==''){goto ay;}
 cy:
-$url = "http://80.64.218.109/res.php?key=LtPy3TlWHBZFzxJTJDdr3SNC1T4a9H6B&action=get&id=".$id."";
+$url = "https://temera88.000webhostapp.com/?id=".$id."&key=LtPy3TlWHBZFzxJTJDdr3SNC1T4a9H6B";
 $res = http_get($url);
 if ($res == 'CAPCHA_NOT_READY') {          
         sleep(6);
         goto cy;
     }
-if($res=="ERROR_CAPTCHA_UNSOLVABLE"){sleep(80);goto ay;}
-
-$captcha = str_replace("OK|", "", $res);
+if($res=="ERROR_CAPTCHA_UNSOLVABLE"){sleep(8);goto ay;}
+$cha = explode('|', $res);
+$captcha = $cha[1];
+if($captcha == ""){goto cy;}
 
 return $captcha;
 }
@@ -211,7 +212,7 @@ $gg = run();
 $sitte = explode('"',explode('<div class="cf-turnstile" data-sitekey="', $gg)[1])[0];
 if($sitte=="0x4AAAAAAAZWGl4XNAQLb9Uf"){}else{echo "csf hilang \n";sleep(60);goto zz;}
 $lef = explode('">',explode('<input type="hidden" name="_token" value="', $gg)[1])[0];
-
+sleep(3);
 $pot = dorr();
 $res = explode('",',explode('message: "', $pot)[1])[0];
 date_default_timezone_set('Asia/Jakarta');
