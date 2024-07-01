@@ -24,7 +24,9 @@ $ddv = "Mozilla/5.0 (Linux; Android) AppleWebKit/537.36 (KHTML, like Gecko) Chro
 
   $header = array(
      "Host: temera88.000webhostapp.com",
+     "upgrade-insecure-requests: 1",
      "content-type: application/x-www-form-urlencoded",
+     "X-Forwarded-For: 2.120.15.80",
      "User-Agent: $ddv"
 );
   
@@ -166,7 +168,7 @@ $vvv = "Mozilla/5.0 (Linux; Android) AppleWebKit/537.36 (KHTML, like Gecko) Chro
 
 $headers = [
        "Host: acryptominer.io",
-       "X-Forwarded-For: ".$ipp."",
+     //  "X-Forwarded-For: ".$ipp."",
         "content-type: application/x-www-form-urlencoded",
         "Connection: keep-alive",      
         "origin: https://acryptominer.io",
@@ -208,6 +210,7 @@ while(true):
 $site = "0x4AAAAAAAZWGl4XNAQLb9Uf";
 $cok = solve();
 $cap = solveCaptcha();
+
 $gg = run();
 $sitte = explode('"',explode('<div class="cf-turnstile" data-sitekey="', $gg)[1])[0];
 if($sitte=="0x4AAAAAAAZWGl4XNAQLb9Uf"){}else{echo "csf hilang \n";sleep(60);goto zz;}
@@ -218,7 +221,10 @@ $res = explode('",',explode('message: "', $pot)[1])[0];
 date_default_timezone_set('Asia/Jakarta');
 $timestamp = time();
 $wak = date("[H:i]", $timestamp);
-if (strpos($res, "successfully") !== false) {echo" ".$wak." ".$res." \n";sleep(301);}else{echo " Claim Gagal! ".$res." \n";sleep(60);goto zz;}
-
+if (strpos($res, "successfully") !== false) {echo" ".$wak." ".$res." \n";}else{echo " Claim Gagal! ".$res." \n";sleep(60);goto zz;}
+$tim = explode(';',explode('var timeUntilNextClaim = ', $pot)[1])[0];
+if ($tim > 0) {
+    sleep($tim);
+}
 endwhile;
 ?>
