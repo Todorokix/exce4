@@ -2,6 +2,8 @@
 error_reporting(0);
 echo " •HAPPY LOOTING• \n";
 
+$usern = "kamyessr";
+
 function get($url){
 	global $vvv;
 
@@ -19,17 +21,11 @@ function get($url){
 }
 function http_get($url){
 	
-   $rd = rand(0,999);
-$ddv = "Mozilla/5.0 (Linux; Android) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Mobile Safari/537.36 X/".$rd."";
-
   $header = array(
-     "Host: temera88.000webhostapp.com",
-     "upgrade-insecure-requests: 1",
      "content-type: application/x-www-form-urlencoded",
-     "X-Forwarded-For: 2.120.15.80",
-     "User-Agent: $ddv"
+     "User-Agent: $vvv"
 );
-  
+  $proxy = "socks5://tfjfbglv:uiyma3co8la9@185.199.229.156:7492";
   $ch = curl_init();
   curl_setopt($ch, CURLOPT_URL, $url);
   curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
@@ -38,19 +34,22 @@ $ddv = "Mozilla/5.0 (Linux; Android) AppleWebKit/537.36 (KHTML, like Gecko) Chro
   curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
   curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
   curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
+  curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL, true);
+  curl_setopt($ch, CURLOPT_PROXY, $proxy);       
+  curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
   return curl_exec($ch);
 }
 function recpt(){
 
 bb:
 $sit = "6Lcd0SYpAAAAAPZk7LMsCwVld1y8gAGhjbbHM5x1";
-$login = "http://api.sctg.xyz/in.php?key=LtPy3TlWHBZFzxJTJDdr3SNC1T4a9H6B&method=userrecaptcha&googlekey=".$sit."&json=1&pageurl=https://acryptominer.io/user/login";
+$login = "http://sctg.xyz/in.php?key=LtPy3TlWHBZFzxJTJDdr3SNC1T4a9H6B&method=userrecaptcha&googlekey=".$sit."&json=1&pageurl=https://acryptominer.io/user/login";
 $result = get($login);
 $re = json_decode($result);
 $id = $re->request;
 if($id==''){goto bb;}
 cs:
-$url = "https://temera88.000webhostapp.com/?id=".$id."&key=LtPy3TlWHBZFzxJTJDdr3SNC1T4a9H6B";
+$url = "http://sctg.xyz/res.php?key=LtPy3TlWHBZFzxJTJDdr3SNC1T4a9H6B&action=get&id=".$id."";
 $res = http_get($url);
 if ($res == 'CAPCHA_NOT_READY') {          
         sleep(6);
@@ -66,13 +65,13 @@ return $captcha;
 function solve(){
 aas:
 $sit = "6Lcd0SYpAAAAAPZk7LMsCwVld1y8gAGhjbbHM5x1";
-$login = "http://api.sctg.xyz/in.php?key=LtPy3TlWHBZFzxJTJDdr3SNC1T4a9H6B&method=userrecaptcha&googlekey=".$sit."&json=1&pageurl=https://acryptominer.io/user/login";
+$login = "http://sctg.xyz/in.php?key=LtPy3TlWHBZFzxJTJDdr3SNC1T4a9H6B&method=userrecaptcha&googlekey=".$sit."&json=1&pageurl=https://acryptominer.io/user/faucet";
 $result = get($login);
 $re = json_decode($result);
 $id = $re->request;
 if($id==''){goto aas;}
 ccs:
-$url = "https://temera88.000webhostapp.com/?id=".$id."&key=LtPy3TlWHBZFzxJTJDdr3SNC1T4a9H6B";
+$url = "http://sctg.xyz/res.php?key=LtPy3TlWHBZFzxJTJDdr3SNC1T4a9H6B&action=get&id=".$id."";
 $res = http_get($url);
 if ($res == 'CAPCHA_NOT_READY') {          
         sleep(6);
@@ -89,14 +88,14 @@ return $captcha;
 function solveCaptcha(){
 	global $site;
 ay:
-$login = "http://api.sctg.xyz/in.php?key=LtPy3TlWHBZFzxJTJDdr3SNC1T4a9H6B&method=turnstile&sitekey=".$site."&json=1&pageurl=https://acryptominer.io/user/faucet";
+$login = "http://sctg.xyz/in.php?key=LtPy3TlWHBZFzxJTJDdr3SNC1T4a9H6B&method=turnstile&sitekey=".$site."&json=1&pageurl=https://acryptominer.io/user/faucet";
 $result = get($login);
 $re = json_decode($result);
 $id = $re->request;
 if($id==''){goto ay;}
 cy:
-$url = "https://temera88.000webhostapp.com/?id=".$id."&key=LtPy3TlWHBZFzxJTJDdr3SNC1T4a9H6B";
-$res = http_get($url);
+$url = "http://sctg.xyz/res.php?key=LtPy3TlWHBZFzxJTJDdr3SNC1T4a9H6B&action=get&id=".$id."";
+$res = get($url);
 if ($res == 'CAPCHA_NOT_READY') {          
         sleep(6);
         goto cy;
@@ -198,7 +197,7 @@ $tok = explode('">',explode('<input type="hidden" name="_token" value="', $str)[
 $capt = recpt();
 
 $url = "https://acryptominer.io/user/login";
-$data = "_token=".$tok."&username=kamyessr&password=Nung1234&g-recaptcha-response=".$capt."&remember=on";
+$data = "_token=".$tok."&username=".$usern."&password=Nung1234&g-recaptcha-response=".$capt."&remember=on";
 $response = http_request($url, 'POST', $data, $headers);
 $url = "https://acryptominer.io/user/dashboard";
 $das = http_request($url, 'GET', null, $headers);
@@ -215,7 +214,7 @@ $gg = run();
 $sitte = explode('"',explode('<div class="cf-turnstile" data-sitekey="', $gg)[1])[0];
 if($sitte=="0x4AAAAAAAZWGl4XNAQLb9Uf"){}else{echo "csf hilang \n";sleep(60);goto zz;}
 $lef = explode('">',explode('<input type="hidden" name="_token" value="', $gg)[1])[0];
-sleep(3);
+sleep(1);
 $pot = dorr();
 $res = explode('",',explode('message: "', $pot)[1])[0];
 date_default_timezone_set('Asia/Jakarta');
