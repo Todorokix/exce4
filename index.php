@@ -2,14 +2,14 @@
 error_reporting(0);
 echo " •HAPPY LOOTING• \n";
 
-$usern = "kamyessr";
+$po = "0";
 
 function get($url){
 	global $vvv;
 
   $header = array(
      "User-Agent: $vvv",
-     "Host: api.sctg.xyz",
+     
      "upgrade-insecure-requests: 1",
      "Connection: keep-alive"
 );
@@ -22,6 +22,11 @@ function get($url){
     curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
   return curl_exec($ch);
 }
+$result = get("https://raw.githubusercontent.com/Todorokix/api/main/dua.txt");
+$array = explode("\n", $result);
+$usern = $array[$po];
+echo " $usern \n";
+
 function http_get($url){
 	global $vvv;
   $header = array(
@@ -239,6 +244,7 @@ if($bal == ""){echo " Balance Hilang \n";sleep(60);goto zz;}
 echo " Balance: ".$bal." \n";
 
 while(true):
+mbx:
 $site = "0x4AAAAAAAZWGl4XNAQLb9Uf";
 $cok = solve();
 $cap = solveCaptcha();
@@ -254,7 +260,7 @@ date_default_timezone_set('Asia/Jakarta');
 $timestamp = time();
 $wak = date("[H:i]", $timestamp);
 if (strpos($res, "Max") !== false) {echo" ".$wak." ".$res." Max Daily!!\n";sleep(999999);}
-if (strpos($res, "successfully") !== false) {echo" ".$wak." ".$res." \n";}else{echo " Claim Gagal! ".$res." \n";sleep(60);goto zz;}
+if (strpos($res, "successfully") !== false) {echo" ".$wak." ".$res." \n";}else{echo " Claim Gagal! ".$res." \n";sleep(60);goto mbx;}
 $tim = explode(';',explode('var timeUntilNextClaim = ', $pot)[1])[0];
 if ($tim > 0) {
     sleep($tim);
