@@ -2,7 +2,7 @@
 error_reporting(0);
 echo " •HAPPY LOOTING• \n";
 
-$po = "0";
+$po = "3";
 
 function get($url){
 	global $vvv;
