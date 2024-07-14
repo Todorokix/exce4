@@ -35,7 +35,7 @@ function http_get($url){
      "upgrade-insecure-requests: 1",
      "Connection: keep-alive"
 );
-  $proxy = "socks5://kabbesul:qmp4dftcd06c@185.199.229.156:7492";
+  //$proxy = "socks5://kabbesul:qmp4dftcd06c@185.199.229.156:7492";
   $ch = curl_init();
   curl_setopt($ch, CURLOPT_URL, $url);
   curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
@@ -43,10 +43,10 @@ function http_get($url){
   curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
   curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
   curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-  curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
-  curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL, true);
-  curl_setopt($ch, CURLOPT_PROXY, $proxy);       
-  curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
+  //curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
+  //curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL, true);
+  //curl_setopt($ch, CURLOPT_PROXY, $proxy);       
+  //curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
   return curl_exec($ch);
 }
 function recpt() {
